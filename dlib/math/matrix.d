@@ -562,7 +562,7 @@ struct Matrix(T, size_t N)
     */
     static if (N == 4)
     {
-        bool isAffine() @property
+        bool isAffine() const @property
         do
         {
             return (a41 == 0.0
@@ -612,7 +612,7 @@ struct Matrix(T, size_t N)
     */
     static if (N == 1)
     {
-        Matrix!(T,N) inverse() @property
+        Matrix!(T,N) inverse() const @property
         do
         {
             Matrix!(T,N) res;
@@ -623,7 +623,7 @@ struct Matrix(T, size_t N)
     else
     static if (N == 2)
     {
-        Matrix!(T,N) inverse() @property
+        Matrix!(T,N) inverse() const @property
         do
         {
             Matrix!(T,N) res;
@@ -641,7 +641,7 @@ struct Matrix(T, size_t N)
     else
     static if (N == 3)
     {
-        Matrix!(T,N) inverse() @property
+        Matrix!(T,N) inverse() const @property
         do
         {
             T d = determinant;
@@ -667,7 +667,7 @@ struct Matrix(T, size_t N)
     }
     else
     {
-        Matrix!(T,N) inverse() @property
+        Matrix!(T,N) inverse() const @property
         do
         {
             Matrix!(T,N) res;
@@ -840,7 +840,7 @@ struct Matrix(T, size_t N)
             this[i, j] = v.arrayof[j];
     }
 
-    Vector!(T,N) getColumn(size_t j)
+    Vector!(T,N) getColumn(size_t j) const
     {
         Vector!(T,N) res;
         for (size_t i = 0; i < N; i++)

@@ -267,7 +267,7 @@ struct Quaternion(T)
        /**
         * Convert to 4x4 matrix
         */
-        Matrix!(T,4) toMatrix4x4()
+        Matrix!(T,4) toMatrix4x4() const
         {
             auto mat = Matrix!(T,4).identity;
 
@@ -297,7 +297,7 @@ struct Quaternion(T)
        /**
         * Convert to 3x3 matrix
         */
-        Matrix!(T,3) toMatrix3x3()
+        Matrix!(T,3) toMatrix3x3() const
         {
             auto mat = Matrix!(T,3).identity;
 

@@ -1,3 +1,9 @@
+dlib 1.4.0 - TBD
+----------------
+Changes since dlib 1.4.0 beta1:
+- **dlib.math**
+  - `Matrix.isAffine`, `Matrix.inverse`, `Matrix.getColumn`, `Quaternion.toMatrix4x4`, `Quaternion.toMatrix3x3` are now `const`.
+
 dlib 1.4.0 beta1 - 31 Nov, 2025
 -------------------------------
 - **dlib.memory**

@@ -1,5 +1,5 @@
-dlib 1.4.0 - TBD
-----------------
+dlib 1.4.0 - 1 Dec, 2025
+------------------------
 Changes since dlib 1.4.0 beta1:
 - **dlib.math**
   - `Matrix.isAffine`, `Matrix.inverse`, `Matrix.getColumn`, `Quaternion.toMatrix4x4`, `Quaternion.toMatrix3x3` are now `const`.
@@ -19,8 +19,8 @@ dlib 1.3.3 - 30 Aug, 2025
 - **dlib.serialization**
   - Fix bugs in `dlib.serialization.json`.
 
-dlib 1.3.2 - 01 May, 2025
--------------------------
+dlib 1.3.2 - 1 May, 2025
+------------------------
 - **dlib.math**
   - `lookAtMatrix` now checks for matching eye and up directions
   - Fix unittest for vector swizzling.

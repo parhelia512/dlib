@@ -46,7 +46,7 @@ All modules in dlib should belong to a package (`dlib.core`, `dlib.math`, `dlib.
 Each D module should start with a Boost license block prepended with a copyright notice:
 ```d
 /*
-Copyright (c) 2025 <author's name here>
+Copyright (c) 2026 <author's name here>
 
 Boost Software License - Version 1.0 - August 17th, 2003
 
@@ -84,7 +84,7 @@ It is not strictly necessary to document code, but if you do, use [ddoc syntax](
  * Description:
  * <more in-depth information (optional)>
  *
- * Copyright: Your Name 2025.
+ * Copyright: Your Name 2026.
  * License: $(LINK2 https://boost.org/LICENSE_1_0.txt, Boost License 1.0).
  * Authors: Your Name
  */

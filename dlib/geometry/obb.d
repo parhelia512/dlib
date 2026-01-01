@@ -59,9 +59,9 @@ struct OBB
 
         Vector3f center(Vector3f v)
         {
-            transform.a41 = v.x;
-            transform.a42 = v.y;
-            transform.a43 = v.z;
+            transform.a14 = v.x;
+            transform.a24 = v.y;
+            transform.a34 = v.z;
             return v;
         }
     }

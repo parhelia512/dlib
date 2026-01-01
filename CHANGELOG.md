@@ -1,3 +1,8 @@
+dlib 1.4.1 - 1 Jan, 2026
+------------------------
+- **dlib.geometry**
+  - Fix setting `OBB.center`.
+
 dlib 1.4.0 - 1 Dec, 2025
 ------------------------
 Changes since dlib 1.4.0 beta1:

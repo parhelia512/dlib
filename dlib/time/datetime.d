@@ -39,10 +39,10 @@ struct DateTime
     /// Number of hours passed from the beginning of the day.
     int hours;
     
-    /// Gregorian day of the month.
+    /// Gregorian day of the month, beginning from 1.
     int day;
     
-    /// Gregorian month.
+    /// Gregorian month, beginning from 1.
     int month;
     
     /// Gregorian year.
@@ -51,7 +51,7 @@ struct DateTime
     /// Day of the week, beginning from 1.
     int dayInWeek;
     
-    /// Day in the year.
+    /// Day in the year, beginning from 1.
     int dayInYear;
 }
 
@@ -74,10 +74,10 @@ DateTime dateTimeFromTm(tm* timeInfo) pure nothrow @nogc
         minutes: timeInfo.tm_min,
         hours: timeInfo.tm_hour,
         day: timeInfo.tm_mday,
-        month: timeInfo.tm_mon,
+        month: 1 + timeInfo.tm_mon,
         year: 1900 + timeInfo.tm_year,
-        dayInWeek: timeInfo.tm_wday,
-        dayInYear: timeInfo.tm_yday
+        dayInWeek: 1 + timeInfo.tm_wday,
+        dayInYear: 1 + timeInfo.tm_yday
     };
     
     return dateTime;

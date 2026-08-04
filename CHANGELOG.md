@@ -1,5 +1,5 @@
-dlib 1.6.0 - TBD
-----------------
+dlib 1.6.0 - 4 Aug, 2026
+------------------------
 - **dlib.core**
   - `Mutex` is now `@nogc`
 - **dlib.time**

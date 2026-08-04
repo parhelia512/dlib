@@ -27,6 +27,7 @@ DEALINGS IN THE SOFTWARE.
 */
 module dlib.time.ctime;
 
+import core.stdc.config;
 import dlib.core.mutex;
 
 private __gshared Mutex mutex;
@@ -36,16 +37,8 @@ void init() nothrow @nogc
     mutex.init();
 }
 
-version(X86_64)
-{
-    alias time_t = long;
-}
-else version(X86)
-{
-    alias time_t = int;
-}
-
-alias clock_t = int;
+alias time_t = c_long;
+alias clock_t = c_long;
 
 struct tm
 {

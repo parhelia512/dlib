@@ -55,7 +55,7 @@ struct DateTime
     int dayInYear;
 }
 
-public import dlib.time.ctime;
+import dlib.time.ctime;
 
 /// Initializes the mutex for thread-safe queries.
 void init() nothrow @nogc

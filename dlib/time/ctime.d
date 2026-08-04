@@ -30,11 +30,11 @@ module dlib.time.ctime;
 import core.stdc.config;
 import dlib.core.mutex;
 
-private __gshared Mutex mutex;
+private __gshared Mutex timeMutex;
 
 void init() nothrow @nogc
 {
-    mutex.init();
+    timeMutex.init();
 }
 
 alias time_t = c_long;
@@ -58,31 +58,61 @@ extern(C) nothrow @nogc
     time_t time(time_t* arg);
     clock_t clock();
     
+    /*
+     * Non-tread-safe C time functions.
+     */
     tm* gmtime(const(time_t)* t);
     tm* localtime(const(time_t)* t);
     
     version(Posix)
     {
-        tm* gmtime_s(const(time_t)* t, tm* buf);
-        tm* localtime_s(const(time_t)* t, tm* buf);
+        tm* gmtime_r(const(time_t)* t, tm* buf);
+        tm* localtime_r(const(time_t)* t, tm* buf);
+    }
+}
+
+version(Posix)
+{
+    /*
+     * POSIX doesn't provide C11 gmtime_s, localtime_s,
+     * but defines a thread-safe alternatives gmtime_r, localtime_r, which are similar,
+     * except that they don't validate inputs.
+     */
+    
+    pragma(inline, true);
+    tm* gmtime_s(const(time_t)* t, tm* buf) nothrow @nogc
+    {
+        return gmtime_r(t, buf);
     }
     
-    version(Windows)
+    pragma(inline, true);
+    tm* localtime_s(const(time_t)* t, tm* buf) nothrow @nogc
     {
-        tm* gmtime_s(const(time_t)* t, tm* buf)
-        {
-            mutex.lock();
-            *buf = *gmtime(t);
-            mutex.unlock();
-            return buf;
-        }
-        
-        tm* localtime_s(const(time_t)* t, tm* buf)
-        {
-            mutex.lock();
-            *buf = *localtime(t);
-            mutex.unlock();
-            return buf;
-        }
+        return localtime_r(t, buf);
+    }
+}
+else version(Windows)
+{
+    /*
+     * Windows also doesn't provide standard gmtime_s, localtime_s,
+     * so dlib implements its own.
+     */
+    
+    pragma(inline, true);
+    tm* gmtime_s(const(time_t)* t, tm* buf) nothrow @nogc
+    {
+        timeMutex.lock();
+        *buf = *gmtime(t);
+        timeMutex.unlock();
+        return buf;
+    }
+    
+    pragma(inline, true);
+    tm* localtime_s(const(time_t)* t, tm* buf) nothrow @nogc
+    {
+        timeMutex.lock();
+        *buf = *localtime(t);
+        timeMutex.unlock();
+        return buf;
     }
 }
